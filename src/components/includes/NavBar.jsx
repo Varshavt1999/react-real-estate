@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { MenuData } from "../../datas/MenuData";
 import Button from "./Button";
 import { FaBars } from "react-icons/fa";
+import HamburgerMenu from "./HamburgerMenu";
 
 function NavBar() {
-    console.log(MenuData);
+    const [isOpen, setIsOpen] = useState(false);
+    const toggle = () => {
+        setIsOpen(!isOpen);
+    };
+    console.log(isOpen, "isOpen//////////////");
     return (
         <MainContainer>
             <div className="wrapper">
                 <Logo to="/">RealEstate.</Logo>
-                <Hamburger />
+                {/* <div
+                    style={{
+                        background: "red",
+                        width: "100px",
+                        height: "100px",
+                    }}
+                    onClick={() => {
+                        console.log("@@@@@@@@@@@@@@@@@@@");
+                    }}
+                ></div> */}
+                <Hamburger onClick={toggle} />
                 <NavMenu>
                     {MenuData.map((item, index) => (
                         <NavMenuLinks key={index} to={item.link}>
@@ -27,6 +42,7 @@ function NavBar() {
                     />
                 </NavBtn>
             </div>
+            <HamburgerMenu isOpen={isOpen} toggle={toggle} />
         </MainContainer>
     );
 }
@@ -34,6 +50,7 @@ function NavBar() {
 const MainContainer = styled.div`
     height: 80px;
     background-color: transparent;
+    position: relative;
     & .wrapper {
         height: 100%;
         display: flex;
@@ -49,6 +66,8 @@ const Logo = styled(Link)`
 `;
 const Hamburger = styled(FaBars)`
     display: none;
+    font-size: 22px;
+    cursor: pointer;
     @media all and (max-width: 768px) {
         display: block;
     }

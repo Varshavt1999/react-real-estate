@@ -26,6 +26,7 @@ const BtnContainer = styled(Link)`
     font-size: ${(big) => (big ? "15px" : "13px")};
     display: flex;
     align-items: center;
+    text-align: center;
 `;
 const ArrowContainer = styled(FaArrowRight)`
     margin-left: 10px;

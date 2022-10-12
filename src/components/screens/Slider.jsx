@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { SliderData } from "../../datas/SliderData";
 import Button from "../includes/Button";
@@ -10,14 +10,35 @@ function Slider() {
     const [current, setCurrent] = useState(0);
     const length = SliderData.length;
     const timeout = useRef(null);
+    useEffect(() => {
+        const nextSlide = () => {
+            setCurrent(current === length - 1 ? 0 : current + 1);
+        };
+
+        timeout.current = setTimeout(nextSlide, 3500);
+        return () => {
+            if (timeout.current) {
+                clearTimeout(timeout.current);
+            }
+        };
+    }, [current, length]);
     const nextSlide = () => {
         setCurrent(current === length - 1 ? 0 : current + 1);
         console.log(current);
+        if (timeout.current) {
+            clearTimeout(timeout.current);
+        }
     };
     const prevSlide = () => {
         setCurrent(current === 0 ? length - 1 : current - 1);
         console.log(current);
+        if (timeout.current) {
+            clearTimeout(timeout.current);
+        }
     };
+    if (!Array.isArray(SliderData) || SliderData.length <= 0) {
+        return null;
+    }
 
     return (
         <MainContainer>
@@ -32,12 +53,14 @@ function Slider() {
                                 <Content>
                                     <Title>{item.title}</Title>
                                     <Price>{item.price}</Price>
-                                    <Button
-                                        to={item.path}
-                                        content={item.label}
-                                        primary="true"
-                                        arr="true"
-                                    />
+                                    <BtnContainer>
+                                        <Button
+                                            to={item.path}
+                                            content={item.label}
+                                            primary="true"
+                                            arr="true"
+                                        />
+                                    </BtnContainer>
                                 </Content>
                             </Slide>
                         )}
@@ -54,11 +77,11 @@ function Slider() {
 
 const MainContainer = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 80px);
     z-index: -1;
-    position: absolute;
+    /* position: absolute;
     top: 0;
-    left: 0;
+    left: 0; */
 `;
 const SliderContainer = styled.div`
     position: relative;
@@ -94,7 +117,7 @@ const ImageBox = styled.div`
     right: 0;
     bottom: 0;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 80px);
 `;
 const Slide = styled.div``;
 const Image = styled.img`
@@ -150,6 +173,12 @@ const PrevArrow = styled(FaAngleLeft)`
 `;
 const NextArrow = styled(FaAngleRight)`
     ${ArrowButtons}
+`;
+const BtnContainer = styled.div`
+    transition: 0.3s;
+    &:hover {
+        transform: translateY(-2px);
+    }
 `;
 
 export default Slider;
