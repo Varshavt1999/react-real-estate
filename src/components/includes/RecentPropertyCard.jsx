@@ -8,7 +8,9 @@ function RecentPropertyCard({ item, aos, aos_offset }) {
                 <Image src={item.image} />
             </TopBox>
             <BottomBox>
-                <For>For {item.sale ? "sale" : item.rent ? "rent" : ""}</For>
+                <For className={item.sale ? "active" : ""}>
+                    For {item.sale ? "sale" : item.rent ? "rent" : ""}
+                </For>
                 <PropertyName>{item.title}</PropertyName>
                 <Location>{item.location}</Location>
                 <Price>{item.price}</Price>
@@ -31,13 +33,34 @@ const Image = styled.img`
     height: 100%;
     object-fit: cover;
 `;
-const For = styled.div``;
-const PropertyName = styled.div``;
-const Location = styled.div``;
+const For = styled.div`
+    padding: 5px;
+    font-size: 12px;
+    background-color: rgb(128, 128, 0, 0.4);
+    margin-bottom: 10px;
+    width: max-content;
+    &.active {
+        background-color: rgb(0, 0, 128, 0.4);
+    }
+`;
+const PropertyName = styled.div`
+    font-size: 16px;
+    font-weight: 600;
+    color: green;
+    margin-bottom: 5px;
+`;
+const Location = styled.div`
+    font-size: 14px;
+    color: #797575;
+    margin-bottom: 5px;
+`;
 const BottomBox = styled.div`
     padding: 20px;
 `;
-const Price = styled.div``;
+const Price = styled.div`
+    font-size: 16px;
+    font-weight: 600;
+`;
 const Rating = styled.div``;
 
 export default RecentPropertyCard;

@@ -8,7 +8,6 @@ function RecentProperties() {
     useEffect(() => {
         Aos.init();
     }, []);
-
     return (
         <MainContainer>
             <div className="wrapper">
@@ -26,7 +25,7 @@ function RecentProperties() {
                         <RecentPropertyCard
                             item={item}
                             aos="zoom-in-up"
-                            aos_offset="100"
+                            aos_offset="50"
                         />
                     ))}
                 </ListContainer>
@@ -54,6 +53,9 @@ const ListContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 30px;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 export default RecentProperties;

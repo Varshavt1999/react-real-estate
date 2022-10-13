@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import Aos from "aos";
+import "aos/dist/aos.css";
 import { SliderData } from "../../datas/SliderData";
 import Button from "../includes/Button";
 import { css } from "styled-components";
@@ -10,6 +12,9 @@ function Slider() {
     const [current, setCurrent] = useState(0);
     const length = SliderData.length;
     const timeout = useRef(null);
+    useEffect(() => {
+        Aos.init();
+    }, []);
     useEffect(() => {
         const nextSlide = () => {
             setCurrent(current === length - 1 ? 0 : current + 1);
@@ -51,9 +56,13 @@ function Slider() {
                                     <Image src={item.image} alt={item.alt} />
                                 </ImageBox>
                                 <Content>
-                                    <Title>{item.title}</Title>
-                                    <Price>{item.price}</Price>
-                                    <BtnContainer>
+                                    <Title data-aos="slide-down">
+                                        {item.title}
+                                    </Title>
+                                    <Price data-aos="slide-down">
+                                        {item.price}
+                                    </Price>
+                                    <BtnContainer data-aos="slide-down">
                                         <Button
                                             to={item.path}
                                             content={item.label}
