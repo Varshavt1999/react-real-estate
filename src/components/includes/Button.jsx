@@ -19,13 +19,14 @@ const BtnContainer = styled(Link)`
     min-width: 100px;
     max-width: 170px;
     cursor: pointer;
+    text-align: center;
     text-decoration: none;
     border-radius: 4px;
     transition: 0.3s;
-    padding: ${(big) => (big ? "12px 28px" : "10px 24px")};
+    padding: ${(big) => (big ? "12px" : "10px ")};
     font-size: ${(big) => (big ? "15px" : "13px")};
     display: flex;
-    align-items: center;
+    justify-content: center;
     text-align: center;
 `;
 const ArrowContainer = styled(FaArrowRight)`

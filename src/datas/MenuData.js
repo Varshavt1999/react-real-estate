@@ -1,14 +1,22 @@
 export const MenuData = [
     {
+        title: "Home",
+        link: "/",
+    },
+    {
         title: "About",
         link: "/about",
     },
     {
-        title: "Homes",
-        link: "/homes",
+        title: "Services",
+        link: "/services",
     },
     {
-        title: "Rentals",
-        link: "/rentals",
+        title: "Pricing",
+        link: "/pricing",
+    },
+    {
+        title: "Contact",
+        link: "/contact",
     },
 ];

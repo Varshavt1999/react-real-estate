@@ -15,32 +15,24 @@ function NavBar() {
     return (
         <MainContainer>
             <div className="wrapper">
-                <Logo to="/">RealEstate.</Logo>
-                {/* <div
-                    style={{
-                        background: "red",
-                        width: "100px",
-                        height: "100px",
-                    }}
-                    onClick={() => {
-                        console.log("@@@@@@@@@@@@@@@@@@@");
-                    }}
-                ></div> */}
-                <Hamburger onClick={toggle} />
-                <NavMenu>
-                    {MenuData.map((item, index) => (
-                        <NavMenuLinks key={index} to={item.link}>
-                            {item.title}
-                        </NavMenuLinks>
-                    ))}
-                </NavMenu>
-                <NavBtn>
-                    <Button
-                        primary="true"
-                        content="Contact Us"
-                        path="/contact"
-                    />
-                </NavBtn>
+                <Container>
+                    <Logo to="/">RealEstate.</Logo>
+                    <Hamburger onClick={toggle} />
+                    <NavMenu>
+                        {MenuData.map((item, index) => (
+                            <NavMenuLinks key={index} to={item.link}>
+                                {item.title}
+                            </NavMenuLinks>
+                        ))}
+                    </NavMenu>
+                    <NavBtn>
+                        <Button
+                            primary="true"
+                            content="Contact Us"
+                            path="/contact"
+                        />
+                    </NavBtn>
+                </Container>
             </div>
             <HamburgerMenu isOpen={isOpen} toggle={toggle} />
         </MainContainer>
@@ -48,15 +40,17 @@ function NavBar() {
 }
 
 const MainContainer = styled.div`
-    height: 80px;
+    padding: 30px 0;
     background-color: transparent;
     position: relative;
     & .wrapper {
         height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
     }
+`;
+const Container = styled.div`
+    display: grid;
+    grid-template-columns: 0.8fr 3fr 0.8fr;
+    grid-column-gap: 30px;
 `;
 const Logo = styled(Link)`
     display: inline-block;
@@ -74,8 +68,8 @@ const Hamburger = styled(FaBars)`
 `;
 const NavMenu = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 30px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 20px;
     @media all and (max-width: 768px) {
         display: none;
     }
