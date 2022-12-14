@@ -1,8 +1,4 @@
-import React, { useEffect } from "react";
-import { PropertyType } from "../../datas/PropertyTypeData";
-import NavBar from "../includes/NavBar";
-import PackageCard from "../includes/PackageCard";
-import Question from "../includes/Question";
+import React from "react";
 import ExploreHomes from "./ExploreHomes";
 import OurAwards from "./OurAwards";
 import OurFeaturedAgents from "./OurFeaturedAgents";

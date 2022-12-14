@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { BiCheck } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
